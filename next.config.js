@@ -4,7 +4,6 @@ const { protocol, hostname, port, pathname } = new URL(
 
 /** @type {import('next').NextConfig} */
 module.exports = {
-  output: "export",
   images: {
     remotePatterns: [
       {
