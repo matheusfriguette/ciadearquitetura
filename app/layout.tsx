@@ -6,52 +6,52 @@ import Link from "next/link";
 const metropolis = localFont({
   src: [
     {
-      path: "./fonts/Metropolis-Light.woff2",
+      path: "./_fonts/Metropolis-Light.woff2",
       weight: "300",
       style: "normal",
     },
     {
-      path: "./fonts/Metropolis-LightItalic.woff2",
+      path: "./_fonts/Metropolis-LightItalic.woff2",
       weight: "300",
       style: "italic",
     },
     {
-      path: "./fonts/Metropolis-Regular.woff2",
+      path: "./_fonts/Metropolis-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Metropolis-RegularItalic.woff2",
+      path: "./_fonts/Metropolis-RegularItalic.woff2",
       weight: "400",
       style: "italic",
     },
     {
-      path: "./fonts/Metropolis-Medium.woff2",
+      path: "./_fonts/Metropolis-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./fonts/Metropolis-MediumItalic.woff2",
+      path: "./_fonts/Metropolis-MediumItalic.woff2",
       weight: "500",
       style: "italic",
     },
     {
-      path: "./fonts/Metropolis-SemiBold.woff2",
+      path: "./_fonts/Metropolis-SemiBold.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "./fonts/Metropolis-SemiBoldItalic.woff2",
+      path: "./_fonts/Metropolis-SemiBoldItalic.woff2",
       weight: "600",
       style: "italic",
     },
     {
-      path: "./fonts/Metropolis-Bold.woff2",
+      path: "./_fonts/Metropolis-Bold.woff2",
       weight: "700",
       style: "normal",
     },
     {
-      path: "./fonts/Metropolis-BoldItalic.woff2",
+      path: "./_fonts/Metropolis-BoldItalic.woff2",
       weight: "700",
       style: "italic",
     },
@@ -69,7 +69,9 @@ export default function RootLayout({
       <body>
         <header className="fixed z-20 w-full bg-white shadow-md">
           <div className="container mx-auto flex items-center justify-between">
-            <img className="h-24" src="/logo.png" alt="" />
+            <Link href="/">
+              <img className="h-24" src="/logo.png" alt="" />
+            </Link>
 
             <nav>
               <ul className="flex gap-12 text-sm font-light tracking-widest text-stone-900">
@@ -94,6 +96,8 @@ export default function RootLayout({
         </header>
 
         <div className="bg-white">{children}</div>
+
+        <div id="image-root"></div>
       </body>
     </html>
   );

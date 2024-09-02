@@ -1,33 +1,40 @@
+import { ProjectImageCard } from "../../_components/project-image-card";
+import { PROJECT_IMAGES } from "../../_lib/projects";
+
 export default function Page() {
+  const projectImages = PROJECT_IMAGES;
+
   return (
     <div className="py-24">
       <div
-        className="h-[60vh] w-full bg-cover bg-fixed bg-bottom"
+        className="h-[40vh] w-full bg-cover bg-fixed bg-center lg:h-[60vh]"
         style={{
           backgroundImage:
-            "url('https://ciadearquitetura.com/admin/uploads/galeria/6.varanda_n0va_03.png')",
+            "url('https://ciadearquitetura.com/admin/uploads/galeria/fachada_casa_horizonte_cia_de_arquitetura_casa_brasileira_pedra_natural_paisagismo.png')",
         }}
       ></div>
 
-      <div className="container mx-auto -mt-12">
-        <div className="flex w-full justify-center">
-          <div className="flex w-1/6 flex-col gap-2 rounded-s-full border-b border-s border-t border-stone-200 bg-white px-12 py-6">
-            <div className="text-xs font-light uppercase tracking-widest text-stone-600">
-              Ano
+      <div className="container -mt-12">
+        <div className="flex w-full justify-center lg:justify-end">
+          <div className="grid grid-cols-3 divide-x divide-stone-200 border border-stone-200 bg-white">
+            <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
+              <div className="text-xs font-light uppercase tracking-widest text-stone-600">
+                Ano
+              </div>
+              <div>2019</div>
             </div>
-            <div>2023</div>
-          </div>
-          <div className="flex w-1/6 flex-col gap-2 border-b border-t border-stone-200 bg-white px-12 py-6">
-            <div className="text-xs font-light uppercase tracking-widest text-stone-600">
-              Localização
+            <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
+              <div className="text-xs font-light uppercase tracking-widest text-stone-600">
+                Localização
+              </div>
+              <div>João Pinheiro - MG</div>
             </div>
-            <div>Uberlândia - MG</div>
-          </div>
-          <div className="flex w-1/6 flex-col gap-2 rounded-e-full border-b border-e border-t border-stone-200 bg-white px-12 py-6">
-            <div className="text-xs font-light uppercase tracking-widest text-stone-600">
-              Área
+            <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
+              <div className="text-xs font-light uppercase tracking-widest text-stone-600">
+                Área
+              </div>
+              <div>411,56 m²</div>
             </div>
-            <div>954 m²</div>
           </div>
         </div>
       </div>
@@ -37,7 +44,9 @@ export default function Page() {
           RESIDENCIAL
         </h2>
 
-        <h1 className="mt-1 text-6xl font-semibold">Casa Brisa</h1>
+        <h1 className="mt-1 text-5xl font-semibold md:text-6xl">
+          Casa Horizonte
+        </h1>
 
         <p className="mt-8 text-lg font-light leading-relaxed text-stone-600">
           Com uma horizontalidade marcante, a fachada dessa casa de condomínio
@@ -57,51 +66,36 @@ export default function Page() {
         </p>
       </div>
 
-      <div className="px-12">
+      <div className="px-4 md:px-8 xl:px-12">
         <div className="mt-16">
-          <div className="grid grid-cols-2 gap-2">
-            <div className="grid h-full grid-cols-1 gap-2">
-              <div className="group relative w-full overflow-hidden">
-                <img
-                  className="relative"
-                  src="https://ciadearquitetura.com/admin/uploads/galeria/6.varanda_n0va_03.png"
-                  alt=""
-                />
+          <div className="grid grid-cols-4 gap-2">
+            {projectImages.map((image, index) => {
+              const totalImages = projectImages.length;
+              const imagesRemaining = totalImages % 3;
+              let colSpan = "";
 
-                <div className="absolute inset-0 hidden h-full w-full bg-black/50 group-hover:block"></div>
-              </div>
-            </div>
-            <div className="grid h-full grid-cols-2 gap-2">
-              <img
-                className="h-full w-full object-cover"
-                src="https://ciadearquitetura.com/admin/uploads/galeria/6.varanda_n0va_03.png"
-                alt=""
-              />
-              <img
-                className="h-full w-full object-cover"
-                src="https://ciadearquitetura.com/admin/uploads/galeria/6.varanda_n0va_03.png"
-                alt=""
-              />
-            </div>
-            <div className="grid h-full grid-cols-2 gap-2">
-              <img
-                className="h-full w-full object-cover"
-                src="https://ciadearquitetura.com/admin/uploads/galeria/6.varanda_n0va_03.png"
-                alt=""
-              />
-              <img
-                className="h-full w-full object-cover"
-                src="https://ciadearquitetura.com/admin/uploads/galeria/6.varanda_n0va_03.png"
-                alt=""
-              />
-            </div>
-            <div className="grid h-full grid-cols-1 gap-2">
-              <img
-                className="h-full w-full object-cover"
-                src="https://ciadearquitetura.com/admin/uploads/galeria/6.varanda_n0va_03.png"
-                alt=""
-              />
-            </div>
+              if (
+                index >= totalImages - imagesRemaining &&
+                imagesRemaining === 1
+              ) {
+                colSpan = "col-span-4";
+              } else if (
+                index % 6 === 0 ||
+                index % 6 === 5 ||
+                (index >= totalImages - imagesRemaining &&
+                  imagesRemaining === 2)
+              ) {
+                colSpan = "col-span-4 md:col-span-2 lg:col-span-2";
+              } else {
+                colSpan = "col-span-4 md:col-span-2 lg:col-span-1";
+              }
+
+              return (
+                <div className={`${colSpan} grid h-full gap-2`}>
+                  <ProjectImageCard imageUrl={image} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

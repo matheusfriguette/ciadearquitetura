@@ -6,7 +6,7 @@ export default function Page() {
           Conheça nosso escritório
         </h1>
 
-        <div className="mt-8 w-2/3 text-lg font-light leading-relaxed text-stone-600">
+        <div className="mt-8 w-full text-justify text-lg font-light leading-relaxed text-stone-600 md:w-2/3">
           <p>
             A Cia de Arquitetura surge em 2008 a partir da união de jovens
             arquitetos apaixonados pelo poder transformador do design e da
@@ -49,8 +49,8 @@ export default function Page() {
       </div>
 
       <div className="container mx-auto -mt-24">
-        <div className="grid grid-cols-4 rounded-full border border-stone-200 bg-white px-12">
-          <div className="flex flex-col items-center p-6">
+        <div className="grid grid-cols-1 gap-12 px-12 lg:grid-cols-4">
+          <div className="flex flex-col items-center border border-stone-200 bg-white p-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -68,7 +68,7 @@ export default function Page() {
               lobortis tortor vitae nunc pharetra cursus.
             </div>
           </div>
-          <div className="flex flex-col items-center p-6">
+          <div className="flex flex-col items-center border border-stone-200 bg-white p-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ export default function Page() {
               lobortis tortor vitae nunc pharetra cursus.
             </div>
           </div>
-          <div className="flex flex-col items-center p-6">
+          <div className="flex flex-col items-center border border-stone-200 bg-white p-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -104,7 +104,7 @@ export default function Page() {
               lobortis tortor vitae nunc pharetra cursus.
             </div>
           </div>
-          <div className="flex flex-col items-center p-6">
+          <div className="flex flex-col items-center border border-stone-200 bg-white p-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -130,8 +130,8 @@ export default function Page() {
           Veja quem acompanhará o seu projeto de pertinho
         </h2>
 
-        <div className="mt-20 flex justify-around">
-          <div className="w-1/4">
+        <div className="mt-20 flex flex-col md:flex-row gap-4 justify-around">
+          <div className="w-full md:w-1/4">
             <img
               src="https://lp.ciadearquitetura.com/wp-content/uploads/2023/07/Frame-15-5.webp"
               alt=""
@@ -140,7 +140,7 @@ export default function Page() {
               Erick Riul
             </div>
           </div>
-          <div className="w-1/4">
+          <div className="w-full md:w-1/4">
             <img
               src="http://lp.ciadearquitetura.com/wp-content/uploads/2023/07/Frame-15-1.webp"
               alt=""

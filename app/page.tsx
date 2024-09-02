@@ -6,8 +6,6 @@ export default function Page() {
         src="https://ciadearquitetura.com/assets/imagens/fundos/fundo-11.jpg"
         alt=""
       />
-
-      <div></div>
     </div>
   );
 }
