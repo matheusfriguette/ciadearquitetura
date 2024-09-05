@@ -6,7 +6,7 @@ export function Footer() {
       <div className="flex justify-center gap-8">
         <Link
           className="block hover:text-stone-600"
-          href="https://www.instagram.com/ciadearquitetura/"
+          href="https://wa.me//5534999041965?text=Ol%C3%A1,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento."
           target="_blank"
         >
           <svg
