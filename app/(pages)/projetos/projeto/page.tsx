@@ -1,11 +1,11 @@
-import { ProjectImageCard } from "../../_components/project-image-card";
-import { PROJECT_IMAGES } from "../../_lib/projects";
+import { ProjectImageCard } from "../../../_components/project-image-card";
+import { PROJECT_IMAGES } from "../../../_lib/projects";
 
 export default function Page() {
   const projectImages = PROJECT_IMAGES;
 
   return (
-    <div className="py-24">
+    <div>
       <div
         className="h-[40vh] w-full bg-cover bg-fixed bg-center lg:h-[60vh]"
         style={{
@@ -16,21 +16,21 @@ export default function Page() {
 
       <div className="container -mt-12">
         <div className="flex w-full justify-center lg:justify-end">
-          <div className="grid grid-cols-3 divide-x divide-stone-200 border border-stone-200 bg-white">
+          <div className="grid grid-cols-3 border border-stone-200 bg-white">
             <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
-              <div className="text-xs font-light uppercase tracking-widest text-stone-600">
+              <div className="text-xs font-light uppercase tracking-wider text-stone-400">
                 Ano
               </div>
               <div>2019</div>
             </div>
             <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
-              <div className="text-xs font-light uppercase tracking-widest text-stone-600">
+              <div className="text-xs font-light uppercase tracking-wider text-stone-400">
                 Localização
               </div>
               <div>João Pinheiro - MG</div>
             </div>
             <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
-              <div className="text-xs font-light uppercase tracking-widest text-stone-600">
+              <div className="text-xs font-light uppercase tracking-wider text-stone-400">
                 Área
               </div>
               <div>411,56 m²</div>
@@ -40,11 +40,11 @@ export default function Page() {
       </div>
 
       <div className="container mx-auto my-20 bg-white">
-        <h2 className="text-lg font-light uppercase tracking-widest text-lime-600">
+        <h2 className="font-light uppercase tracking-wider text-lime-600">
           RESIDENCIAL
         </h2>
 
-        <h1 className="mt-1 text-5xl font-semibold md:text-6xl">
+        <h1 className="text-5xl font-light uppercase tracking-wider">
           Casa Horizonte
         </h1>
 

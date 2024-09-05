@@ -15,7 +15,7 @@ export function ProjectCard({ title, location, imageUrl }: Props) {
     >
       <img
         src={imageUrl}
-        className="aspect-video cursor-pointer object-cover transition duration-700 ease-out group-hover:scale-110"
+        className="aspect-video w-full cursor-pointer object-cover transition duration-700 ease-out group-hover:scale-110"
         alt=""
       />
 
