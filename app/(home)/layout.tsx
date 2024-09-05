@@ -1,9 +1,9 @@
-import { Header } from "../_components/header";
+import { HomeHeader } from "../_components/home-header";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header transparent />
+      <HomeHeader />
 
       <main>{children}</main>
 

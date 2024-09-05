@@ -1,10 +1,10 @@
 import { Footer } from "../_components/footer";
-import { Header } from "../_components/header";
+import { PagesHeader } from "../_components/pages-header";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header />
+      <PagesHeader />
 
       <main className="pb-40">{children}</main>
 
