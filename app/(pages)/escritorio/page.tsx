@@ -10,7 +10,7 @@ export default function Page() {
           <div className="col-span-3 md:col-span-1">
             <div className="flex justify-center">
               <img
-                className="h-fit w-2/3 md:w-full"
+                className="w-2/3 md:w-full"
                 src="https://ciadearquitetura.com/admin/uploads/imgPrincipal/erick_riul_alessandra_diamante_arquitetura_alto_padrao_interiores.jpg"
                 alt=""
               />
