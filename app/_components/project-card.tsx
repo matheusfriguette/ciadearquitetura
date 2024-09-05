@@ -21,7 +21,7 @@ export function ProjectCard({ title, location, imageUrl }: Props) {
 
       <div className="absolute inset-0 hidden h-full w-full items-center justify-center bg-lime-950/70 group-hover:flex">
         <div className="flex flex-col items-center gap-2 text-white">
-          <div className="text-3xl font-medium">{title}</div>
+          <div className="text-2xl font-light uppercase tracking-wider">{title}</div>
           <div className="text-sm">{location}</div>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function Page() {
   return (
     <div>
       <div className="container">
-        <h1 className="border-b border-stone-200 pb-1 text-right text-2xl font-light uppercase tracking-wider">
+        <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Projetos
         </h1>
 
@@ -29,6 +29,7 @@ export default function Page() {
       <div className="mt-24 grid grid-cols-1 gap-4 px-4 md:grid-cols-2 md:px-8 xl:px-12">
         {projects.map((project) => (
           <ProjectCard
+            key={project.title}
             title={project.title}
             location={project.location}
             imageUrl={project.imageUrl}

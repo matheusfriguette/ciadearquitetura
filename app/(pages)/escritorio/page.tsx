@@ -2,7 +2,7 @@ export default function Page() {
   return (
     <div>
       <div className="container">
-        <h1 className="border-b border-stone-200 pb-1 text-right text-2xl font-light uppercase tracking-wider">
+        <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Escritório
         </h1>
 
@@ -65,7 +65,7 @@ export default function Page() {
 
       <div className="container -mt-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          <div className="flex flex-col items-center border border-stone-200 bg-white p-6">
+          <div className="flex flex-col items-center border border-stone-100 bg-white p-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ export default function Page() {
               lobortis tortor vitae nunc pharetra cursus.
             </div>
           </div>
-          <div className="flex flex-col items-center border border-stone-200 bg-white p-6">
+          <div className="flex flex-col items-center border border-stone-100 bg-white p-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -101,7 +101,7 @@ export default function Page() {
               lobortis tortor vitae nunc pharetra cursus.
             </div>
           </div>
-          <div className="flex flex-col items-center border border-stone-200 bg-white p-6">
+          <div className="flex flex-col items-center border border-stone-100 bg-white p-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

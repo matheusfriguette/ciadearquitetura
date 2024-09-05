@@ -1,9 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 
 export function PagesHeader() {
+  const pathname = usePathname();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -44,17 +47,26 @@ export function PagesHeader() {
         <nav className="hidden md:block">
           <ul className="flex gap-12 text-sm font-light tracking-wider text-stone-900">
             <li>
-              <Link className="hover:text-lime-600" href="/projetos">
+              <Link
+                className={`hover:text-lime-600 ${pathname.startsWith("/projetos") ? "text-lime-600" : ""}`}
+                href="/projetos"
+              >
                 PROJETOS
               </Link>
             </li>
             <li>
-              <Link className="hover:text-lime-600" href="/escritorio">
+              <Link
+                className={`hover:text-lime-600 ${pathname.startsWith("/escritorio") ? "text-lime-600" : ""}`}
+                href="/escritorio"
+              >
                 ESCRITÓRIO
               </Link>
             </li>
             <li>
-              <Link className="hover:text-lime-600" href="/contato">
+              <Link
+                className={`hover:text-lime-600 ${pathname.startsWith("/contato") ? "text-lime-600" : ""}`}
+                href="/contato"
+              >
                 CONTATO
               </Link>
             </li>
@@ -88,7 +100,7 @@ export function PagesHeader() {
           <ul className="z-40 flex flex-col items-center gap-12 text-lg font-light tracking-wider text-white">
             <li>
               <Link
-                className="hover:text-lime-600"
+                className={`hover:text-lime-600 ${pathname.startsWith("/projetos") ? "text-lime-600" : ""}`}
                 href="/projetos"
                 onClick={toggleMenu}
               >
@@ -97,7 +109,7 @@ export function PagesHeader() {
             </li>
             <li>
               <Link
-                className="hover:text-lime-600"
+                className={`hover:text-lime-600 ${pathname.startsWith("/escritorio") ? "text-lime-600" : ""}`}
                 href="/escritorio"
                 onClick={toggleMenu}
               >
@@ -106,7 +118,7 @@ export function PagesHeader() {
             </li>
             <li>
               <Link
-                className="hover:text-lime-600"
+                className={`hover:text-lime-600 ${pathname.startsWith("/contato") ? "text-lime-600" : ""}`}
                 href="/contato"
                 onClick={toggleMenu}
               >

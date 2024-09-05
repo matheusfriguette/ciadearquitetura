@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 
 import "./index.css";
+import { Metadata } from "next";
 
 const metropolis = localFont({
   src: [
@@ -57,6 +58,14 @@ const metropolis = localFont({
   ],
   variable: "--font-metropolis",
 });
+
+export const metadata: Metadata = {
+  title: "Cia de Arquitetura - Escritório de Aquitetura em Uberlândia",
+  description:
+    "Escritório de arquitetura em Uberlândia-MG. Atuamos nas áreas de arquitetura, urbanismo e interiores, desenvolvendo projetos residenciais, comerciais e institucionais. Conheça!",
+  keywords:
+    "arquiteto, arquitetura, projetos, uberlândia, udi, projeto arquitetonico, cia de arquitetura, projeto residencial, projeto institucional",
+};
 
 export default function RootLayout({
   children,

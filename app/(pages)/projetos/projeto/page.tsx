@@ -17,7 +17,7 @@ export default function Page() {
 
       <div className="container -mt-12">
         <div className="flex w-full justify-center lg:justify-end">
-          <div className="grid grid-cols-3 border border-stone-200 bg-white">
+          <div className="grid grid-cols-3 border border-stone-100 bg-white">
             <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
               <div className="text-xs font-light uppercase tracking-wider text-stone-400">
                 Ano
@@ -77,7 +77,7 @@ export default function Page() {
               }
 
               return (
-                <div className={`${colSpan} grid h-full gap-2`}>
+                <div key={image} className={`${colSpan} grid h-full gap-2`}>
                   <ProjectImageCard imageUrl={image} />
                 </div>
               );

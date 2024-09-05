@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <div>
       <div className="container">
-        <h1 className="border-b border-stone-200 pb-1 text-right text-2xl font-light uppercase tracking-wider">
+        <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Contato
         </h1>
 
@@ -63,7 +63,7 @@ export default function Page() {
                 alt="Mapa com a localização do escritório"
               />
             </Link>
-            <div className="mt-4 grid grid-cols-1 gap-6 overflow-hidden border border-stone-200 bg-white p-6 md:grid-cols-2">
+            <div className="mt-4 grid grid-cols-1 gap-6 overflow-hidden border border-stone-100 bg-white p-6 md:grid-cols-2">
               <div>
                 <div className="text-sm font-medium uppercase tracking-wider">
                   Endereço
