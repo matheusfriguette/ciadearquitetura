@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <div>
-      <div className="container">
+      <div className="md:px-8 xl:px-12">
         <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Escritório
         </h1>

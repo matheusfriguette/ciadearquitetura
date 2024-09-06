@@ -15,11 +15,11 @@ export function PagesHeader() {
 
   return (
     <header className="w-full bg-white">
-      <div className="container flex items-center justify-between py-4">
+      <div className="md:px-8 xl:px-12 flex items-center justify-between py-4">
         <Link href="/">
           <img
-            className="h-32"
-            src="https://ciadearquitetura.com/img/logomarca.png"
+            className="h-40 md:h-48"
+            src="/logo-2.png"
             alt=""
           />
         </Link>
