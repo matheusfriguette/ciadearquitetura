@@ -3,10 +3,15 @@ import { Project, ProjectsDTO } from "./types";
 const API_URL = process.env.WORDPRESS_API_URL;
 
 async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
-  const headers = { "Content-Type": "application/json" };
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization:
+      "Basic " + Buffer.from("basketball" + ":" + "brainy").toString("base64"),
+  };
 
   const res = await fetch(API_URL, {
     headers,
+
     method: "POST",
     body: JSON.stringify({
       query,
