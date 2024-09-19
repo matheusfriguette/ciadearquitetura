@@ -1,12 +1,12 @@
-import { PROJECTS } from "../../_lib/projects";
 import { ProjectCard } from "../../_components/project-card";
+import { getAllProjects } from "../../_lib/api";
 
-export default function Page() {
-  const projects = PROJECTS;
+export default async function Page() {
+  const projects = await getAllProjects();
 
   return (
     <div>
-      <div className="md:px-8 xl:px-12">
+      <div className="px-4 md:px-8 xl:px-12">
         <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Projetos
         </h1>
@@ -26,14 +26,14 @@ export default function Page() {
         </ul>
       </div>
 
-      <div className="mt-24 grid grid-cols-1 gap-4 px-4 md:grid-cols-2">
-        {projects.map((project) => (
+      <div className="mt-24 grid grid-cols-1 gap-4 md:grid-cols-2 md:px-8 xl:px-12">
+        {projects.edges.map(({ node: project }) => (
           <ProjectCard
-            key={project.title}
+            key={project.id}
             title={project.title}
             location={project.location}
-            imageUrl={project.imageUrl}
-            slug=""
+            imageUrl={project.featuredImage?.node.sourceUrl}
+            slug={project.slug}
           />
         ))}
       </div>

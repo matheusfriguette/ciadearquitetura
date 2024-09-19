@@ -15,12 +15,12 @@ export function HomeHeader() {
   };
 
   return (
-    <header className="fixed w-full bg-transparent">
-      <div className="md:px-8 xl:px-12 flex items-center justify-between py-4">
+    <header className="fixed w-full bg-transparent z-10">
+      <div className="px-4 md:px-8 xl:px-12 flex items-center justify-between py-4">
         <Link href="/">
           <img
-            className="h-40 md:h-48"
-            src="/logo-2.png"
+            className="h-40 md:h-40"
+            src="/logo-4.png"
             alt=""
           />
         </Link>
@@ -42,6 +42,11 @@ export function HomeHeader() {
                 CONTATO
               </Link>
             </li>
+            <li>
+              <Link className="hover:text-lime-400" href="/blog">
+                BLOG
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -50,7 +55,7 @@ export function HomeHeader() {
         className={`fixed top-0 z-30 h-screen w-screen bg-black/80 backdrop-blur-sm ${isMenuOpen ? "block" : "hidden"}`}
         onClick={toggleMenu}
       >
-        <div className="container flex h-40 items-center justify-end">
+        <div className="px-4 flex h-40 items-center justify-end">
           <button className="text-white" onClick={toggleMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -95,6 +100,15 @@ export function HomeHeader() {
                 onClick={toggleMenu}
               >
                 CONTATO
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:text-lime-400"
+                href="/blog"
+                onClick={toggleMenu}
+              >
+                BLOG
               </Link>
             </li>
           </ul>

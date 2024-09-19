@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <div>
-      <div className="md:px-8 xl:px-12">
+      <div className="px-4 md:px-8 xl:px-12">
         <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Escritório
         </h1>
@@ -56,14 +56,14 @@ export default function Page() {
             "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://lp.ciadearquitetura.com/wp-content/uploads/2023/07/antes-de-contratar-3-1.webp')",
         }}
       >
-        <div className="container py-40">
+        <div className="px-4 md:px-8 xl:px-12 py-40">
           <h2 className="text-3xl font-light uppercase tracking-wider text-white">
             O que fazemos
           </h2>
         </div>
       </div>
 
-      <div className="container -mt-20">
+      <div className="px-4 md:px-8 xl:px-12 -mt-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           <div className="flex flex-col items-center border border-stone-100 bg-white p-6">
             <svg
@@ -122,7 +122,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="container mt-20">
+      <div className="px-4 md:px-8 xl:px-12 mt-20">
         <h2 className="text-3xl font-light uppercase tracking-wider">
           Veja quem acompanhará o seu projeto de pertinho
         </h2>

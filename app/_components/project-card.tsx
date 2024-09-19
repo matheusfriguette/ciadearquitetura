@@ -7,11 +7,11 @@ interface Props {
   slug: string;
 }
 
-export function ProjectCard({ title, location, imageUrl }: Props) {
+export function ProjectCard({ title, location, imageUrl, slug }: Props) {
   return (
     <Link
       className="group relative w-full overflow-hidden"
-      href="/projetos/projeto"
+      href={`/projetos/${slug}`}
     >
       <img
         src={imageUrl}

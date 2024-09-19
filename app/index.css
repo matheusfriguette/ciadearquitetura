@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body:has(#image-root div) {
+body:has(#project-image-carousel-root div) {
     overflow: hidden;
 }

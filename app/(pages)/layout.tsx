@@ -6,11 +6,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <PagesHeader />
 
-      <main className="pb-40">{children}</main>
+      <main className="pb-16 md:pb-40">{children}</main>
 
       <Footer />
 
-      <div id="image-root"></div>
+      <div id="project-image-carousel-root"></div>
     </>
   );
 }

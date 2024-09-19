@@ -28,12 +28,15 @@ export function ProjectDescription({ description }: Props) {
   const isLongDescription = description.length > 200;
   const displayDescription =
     !isMobile || isExpanded || !isLongDescription
-      ? description
-      : description.slice(0, 200) + "...";
+      ? description.replace(/<\/?p>/g, "")
+      : description.replace(/<\/?p>/g, "").slice(0, 200) + "...";
 
   return (
-    <p className="mt-8 text-lg font-light leading-relaxed text-stone-600">
-      {displayDescription}
+    <div className="mt-8 text-justify text-lg font-light leading-relaxed text-stone-600">
+      <p
+        className="inline"
+        dangerouslySetInnerHTML={{ __html: displayDescription }}
+      ></p>
       {isMobile && isLongDescription && (
         <button
           onClick={toggleReadMore}
@@ -42,6 +45,6 @@ export function ProjectDescription({ description }: Props) {
           {isExpanded ? "Ver menos" : "Ver mais"}
         </button>
       )}
-    </p>
+    </div>
   );
 }
