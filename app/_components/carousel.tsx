@@ -112,7 +112,6 @@ export const Carousel: FC<CarouselProps> = ({
       if (carouselContainer.current) {
         carouselContainer.current.scrollTo({
           left: carouselContainer.current.clientWidth * item,
-          behavior: "instant",
         });
       }
       setActiveItem(item);
