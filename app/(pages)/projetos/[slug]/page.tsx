@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const projectImages = PROJECT_IMAGES;
 
   return (
-    <div>
+    <>
       <div
         className="aspect-video h-auto w-full bg-cover bg-center md:h-[50vh] md:bg-fixed"
         style={{
@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      <div className="mx-auto my-20 bg-white px-4 md:px-8 xl:px-12">
+      <div className="mt-20 px-4 md:px-8 xl:px-12">
         <h2 className="font-light uppercase tracking-wider text-lime-600">
           {project.projectCategories.edges[0].node.name}
         </h2>
@@ -54,11 +54,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <ProjectDescription description={project.description} />
       </div>
 
-      <div className="px-4 md:px-8 xl:px-12">
-        <div className="mt-16">
-          <ProjectImageGrid imageUrls={projectImages} />
-        </div>
+      <div className="mt-20 px-4 md:px-8 xl:px-12">
+        <ProjectImageGrid imageUrls={projectImages} />
       </div>
-    </div>
+    </>
   );
 }

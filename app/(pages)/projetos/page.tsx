@@ -5,7 +5,7 @@ export default async function Page() {
   const projects = await getAllProjects();
 
   return (
-    <div>
+    <>
       <div className="px-4 md:px-8 xl:px-12">
         <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Projetos
@@ -37,6 +37,6 @@ export default async function Page() {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }

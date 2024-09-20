@@ -1,33 +1,51 @@
-type Json = { [key: string]: Json } | Json[] | string | number | boolean | null;
-
-type JsonObj = { [key: string]: Json };
-
-export function transformObject(obj: Json): Json {
-  if (isObject(obj)) {
-    if (obj.edges && Array.isArray(obj.edges)) {
-      return obj.edges.map((edge) => {
-        if (edge && isObject(edge)) {
-          return transformObject(edge.node);
-        }
-
-        return edge;
-      });
-    }
-
-    return Object.keys(obj).reduce((result: JsonObj, key) => {
-      const value = obj[key];
-      result[key] = isObject(value) ? transformObject(value) : obj[key];
-      return result;
-    }, {} as JsonObj);
+export function cloneDeep<T>(source: T): T {
+  if (!isObject(source)) {
+    return source;
   }
 
-  if (Array.isArray(obj)) {
-    return obj.map(transformObject);
+  const output: Record<string, unknown> = {};
+
+  for (const key in source) {
+    output[key] = cloneDeep(source[key]);
   }
 
-  return obj;
+  return output as T;
 }
 
-function isObject(input: Json): input is JsonObj {
-  return typeof input === "object" && input !== null && !Array.isArray(input);
+export const isClient: () => boolean = () => {
+  return typeof window !== "undefined";
+};
+
+export function isObject(item: unknown): item is Record<string, unknown> {
+  return (
+    item !== null && typeof item === "object" && item.constructor === Object
+  );
+}
+
+export function mergeDeep<T extends object, S extends object>(
+  target: T,
+  source: S,
+): T & S {
+  if (isObject(source) && Object.keys(source).length === 0) {
+    return cloneDeep({ ...target, ...source });
+  }
+
+  const output = { ...target, ...source };
+
+  if (isObject(source) && isObject(target)) {
+    for (const key in source) {
+      if (isObject(source[key]) && key in target && isObject(target[key])) {
+        (output as Record<string, unknown>)[key] = mergeDeep(
+          target[key] as object,
+          source[key] as object,
+        );
+      } else {
+        (output as Record<string, unknown>)[key] = isObject(source[key])
+          ? cloneDeep(source[key])
+          : source[key];
+      }
+    }
+  }
+
+  return output;
 }

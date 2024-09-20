@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div>
+    <>
       <div className="container">
         <h1 className="border-b border-stone-100 pb-1 text-right text-2xl font-light uppercase tracking-wider">
           Contato
@@ -184,6 +184,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
