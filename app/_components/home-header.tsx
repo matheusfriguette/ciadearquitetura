@@ -3,10 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 
-interface Props {
-  transparent?: boolean;
-}
-
 export function HomeHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -15,13 +11,13 @@ export function HomeHeader() {
   };
 
   return (
-    <header className="fixed w-full bg-transparent z-10">
-      <div className="px-4 md:px-8 xl:px-12 flex items-center justify-between py-4">
+    <header className="fixed z-10 w-full bg-transparent">
+      <div className="flex items-center justify-between px-4 py-4 md:px-8 xl:px-12">
         <Link href="/">
           <img
             className="h-40 md:h-40"
-            src="/logo-4.png"
-            alt=""
+            src="/logo-home.png"
+            alt="Logo do Cia de Arquitetura"
           />
         </Link>
 
@@ -55,7 +51,7 @@ export function HomeHeader() {
         className={`fixed top-0 z-30 h-screen w-screen bg-black/80 backdrop-blur-sm ${isMenuOpen ? "block" : "hidden"}`}
         onClick={toggleMenu}
       >
-        <div className="px-4 flex h-40 items-center justify-end">
+        <div className="flex h-40 items-center justify-end px-4">
           <button className="text-white" onClick={toggleMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

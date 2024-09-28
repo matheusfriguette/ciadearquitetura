@@ -1,4 +1,9 @@
-export default function Page() {
+import Image from "next/image";
+import { getAboutUs } from "../../_lib/api";
+
+export default async function Page() {
+  const aboutUs = await getAboutUs();
+
   return (
     <>
       <div className="px-4 md:px-8 xl:px-12">
@@ -9,42 +14,20 @@ export default function Page() {
         <div className="mt-20 grid grid-cols-3 gap-8">
           <div className="col-span-3 md:col-span-1">
             <div className="flex justify-center">
-              <img
-                className="w-2/3 md:w-full"
-                src="https://ciadearquitetura.com/admin/uploads/imgPrincipal/erick_riul_alessandra_diamante_arquitetura_alto_padrao_interiores.jpg"
-                alt=""
+              <Image
+                className="w-full"
+                src={aboutUs.mainImage.node.sourceUrl}
+                width={aboutUs.mainImage.node.mediaDetails.width}
+                height={aboutUs.mainImage.node.mediaDetails.height}
+                alt="Imagem de Erick Riul e Alessandra Diamante"
               />
             </div>
           </div>
           <div className="col-span-3 md:col-span-2">
-            <div className="text-justify text-lg font-light leading-relaxed text-stone-600">
-              <p>
-                A Cia de Arquitetura surge em 2008 a partir da união de jovens
-                arquitetos apaixonados pelo poder transformador do design e da
-                arquitetura. Hoje, com 15 anos de experiência, somos um
-                escritório consolidado em Uberlândia, trazendo inovação e
-                expertise para cada projeto que abraçamos.
-              </p>
-              <p className="mt-4">
-                Temos o prazer de trabalhar em projetos tanto no Brasil quanto
-                no exterior, oferecendo soluções arquitetônicas que proporcionam
-                experiências únicas aos nossos clientes. Nosso compromisso com a
-                agilidade e atenção aos detalhes garante que cada projeto seja
-                executado com excelência, independentemente de sua localização.
-              </p>
-              <p className="mt-4">
-                Estamos prontos para te receber em nossa sede, na zona sul de
-                Uberlândia. Com uma arquitetura minimalista e cercada de verde,
-                é um lugar acolhedor que reflete nossa identidade. Um espaço
-                inspirador onde as ideias ganham vida.
-              </p>
-              <p className="mt-4">
-                Somos uma equipe robusta que conta com três arquitetos, o que
-                nos permite acompanhar de perto todas as etapas do seu projeto,
-                resultando em soluções criativas, personalizadas e de alta
-                qualidade.
-              </p>
-            </div>
+            <div
+              className="text-justify text-lg font-light leading-relaxed text-stone-600"
+              dangerouslySetInnerHTML={{ __html: aboutUs.mainText }}
+            ></div>
           </div>
         </div>
       </div>
@@ -79,8 +62,7 @@ export default function Page() {
               Projeto arquitetônico
             </div>
             <div className="mt-2 text-center font-light text-stone-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              lobortis tortor vitae nunc pharetra cursus.
+              {aboutUs.architectonicProject}
             </div>
           </div>
           <div className="flex flex-col items-center border border-stone-100 bg-white p-6">
@@ -97,8 +79,7 @@ export default function Page() {
               Projeto de interiores
             </div>
             <div className="mt-2 text-center font-light text-stone-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              lobortis tortor vitae nunc pharetra cursus.
+              {aboutUs.interiorProject}
             </div>
           </div>
           <div className="flex flex-col items-center border border-stone-100 bg-white p-6">
@@ -115,8 +96,7 @@ export default function Page() {
               Projeto paisagístico
             </div>
             <div className="mt-2 text-center font-light text-stone-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              lobortis tortor vitae nunc pharetra cursus.
+              {aboutUs.landscapeProject}
             </div>
           </div>
         </div>
@@ -131,7 +111,7 @@ export default function Page() {
           <div className="w-full md:w-1/4">
             <img
               src="https://lp.ciadearquitetura.com/wp-content/uploads/2023/07/Frame-15-5.webp"
-              alt=""
+              alt="Imagem de Erick Riul"
             />
             <div className="mt-8 text-center text-xl font-medium">
               Erick Riul
@@ -147,7 +127,7 @@ export default function Page() {
           <div className="w-full md:w-1/4">
             <img
               src="http://lp.ciadearquitetura.com/wp-content/uploads/2023/07/Frame-15-1.webp"
-              alt=""
+              alt="Imagem de Alessandra Diamante"
             />
             <div className="mt-8 text-center text-xl font-medium">
               Alessandra Diamante

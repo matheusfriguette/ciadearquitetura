@@ -1,6 +1,14 @@
 import Link from "next/link";
+import { getContact } from "../../_lib/api";
+import Image from "next/image";
 
-export default function Page() {
+export default async function Page() {
+  const contact = await getContact();
+
+  const formatWhatsappNumber = (): string => {
+    return "55" + contact.whatsapp.replace(/\D/g, "");
+  };
+
   return (
     <>
       <div className="container">
@@ -12,28 +20,28 @@ export default function Page() {
           <div className="w-full lg:w-2/5">
             <form className="mt-4 grid grid-cols-2 gap-4">
               <input
-                className="bg-stone-100 px-6 py-4 focus:outline-1"
+                className="border-0 bg-stone-100 px-6 py-4 text-stone-600 focus:ring-stone-600"
                 type="text"
                 placeholder="Nome"
               />
               <input
-                className="bg-stone-100 px-6 py-4 focus:outline-1"
+                className="border-0 bg-stone-100 px-6 py-4 text-stone-600 focus:ring-stone-600"
                 type="text"
                 placeholder="Telefone"
               />
               <input
-                className="col-span-2 bg-stone-100 px-6 py-4 focus:outline-1"
+                className="col-span-2 border-0 bg-stone-100 px-6 py-4 text-stone-600 focus:ring-stone-600"
                 type="text"
                 placeholder="E-mail"
               />
               <textarea
-                className="col-span-2 bg-stone-100 px-6 py-4 focus:outline-1"
+                className="col-span-2 border-0 bg-stone-100 px-6 py-4 text-stone-600 focus:ring-stone-600"
                 placeholder="Mensagem"
                 rows={6}
               />
 
               <div className="col-span-2 flex justify-end">
-                <button className="flex items-center gap-4 bg-stone-900 px-6 py-2 font-light uppercase tracking-wider text-white hover:bg-stone-700">
+                <button className="flex items-center gap-4 bg-stone-900 px-6 py-2 font-light uppercase tracking-wider text-white hover:bg-stone-600">
                   <span>Enviar</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,12 +62,14 @@ export default function Page() {
           <div className="flex w-full flex-col items-center lg:w-3/5">
             <Link
               className="block md:w-4/5"
-              href="https://maps.app.goo.gl/14Zd5PFrspR7nZoW9"
+              href={contact.addressLink}
               target="_blank"
             >
-              <img
+              <Image
                 className="w-full"
-                src="/map-2.png"
+                src={contact.addressImage.node.sourceUrl}
+                width={contact.addressImage.node.mediaDetails.width}
+                height={contact.addressImage.node.mediaDetails.height}
                 alt="Mapa com a localização do escritório"
               />
             </Link>
@@ -73,8 +83,7 @@ export default function Page() {
                   href="https://maps.app.goo.gl/14Zd5PFrspR7nZoW9"
                   target="_blank"
                 >
-                  Alameda Paulina Margonari, 320 - Sala 4 Jardim Karaíba,
-                  Uberlândia - MG, 38411-206
+                  {contact.address}
                 </Link>
               </div>
               <div>
@@ -83,10 +92,10 @@ export default function Page() {
                 </div>
                 <Link
                   className="mt-4 block font-light text-stone-600 hover:text-lime-600"
-                  href="mailto:projetos@ciadearquitetura.com"
+                  href={`mailto:${contact.email}`}
                   target="_blank"
                 >
-                  projetos@ciadearquitetura.com
+                  {contact.email}
                 </Link>
               </div>
               <div>
@@ -95,7 +104,7 @@ export default function Page() {
                 </div>
                 <Link
                   className="mt-4 flex items-center gap-2 font-light text-stone-600 hover:text-lime-600"
-                  href="https://wa.me//5534999041965?text=Ol%C3%A1,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento."
+                  href={`https://wa.me//${formatWhatsappNumber()}?text=Ol%C3%A1,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento.`}
                   target="_blank"
                 >
                   <svg
@@ -107,7 +116,7 @@ export default function Page() {
                     <path d="m.057 24 1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                   </svg>
 
-                  <div>(34) 99904-1965</div>
+                  <div>{contact.whatsapp}</div>
                 </Link>
               </div>
               <div>
@@ -117,7 +126,7 @@ export default function Page() {
                 <div className="mt-4 flex gap-4">
                   <Link
                     className="block text-stone-600 hover:text-lime-600"
-                    href="https://www.instagram.com/ciadearquitetura/"
+                    href={contact.instagram}
                     target="_blank"
                   >
                     <svg
@@ -132,7 +141,7 @@ export default function Page() {
 
                   <Link
                     className="block text-stone-600 hover:text-lime-600"
-                    href="https://www.facebook.com/ciadearquitetura"
+                    href={contact.facebook}
                     target="_blank"
                   >
                     <svg
@@ -147,7 +156,7 @@ export default function Page() {
 
                   <Link
                     className="block text-stone-600 hover:text-lime-600"
-                    href="https://www.youtube.com/@ciadearquitetura"
+                    href={contact.youtube}
                     target="_blank"
                   >
                     <svg
@@ -162,7 +171,7 @@ export default function Page() {
 
                   <Link
                     className="block text-stone-600 hover:text-lime-600"
-                    href="https://br.pinterest.com/ciadearquitetur/_saved/"
+                    href={contact.pinterest}
                     target="_blank"
                   >
                     <svg

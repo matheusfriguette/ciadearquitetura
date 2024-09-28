@@ -1,12 +1,9 @@
 import { getProject } from "../../../_lib/api";
 import { ProjectDescription } from "../../../_components/project-description";
-import { PROJECT_IMAGES } from "../../../_lib/projects";
 import { ProjectImageGrid } from "../../../_components/project-image-grid";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const project = await getProject(params.slug);
-
-  const projectImages = PROJECT_IMAGES;
 
   return (
     <>
@@ -18,44 +15,54 @@ export default async function Page({ params }: { params: { slug: string } }) {
       ></div>
 
       <div className="-mt-12 px-4 md:px-8 xl:px-12">
-        <div className="flex w-full justify-center lg:justify-end">
-          <div className="grid grid-cols-3 border border-stone-100 bg-white">
-            <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
-              <div className="text-xs font-light uppercase tracking-wider text-stone-400">
-                Ano
+        <div className="flex w-full justify-center md:justify-end">
+          <div className="flex w-full flex-wrap border border-stone-100 bg-white md:w-auto">
+            {project.year && (
+              <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
+                <div className="text-xs font-light uppercase tracking-wider text-stone-400">
+                  Ano
+                </div>
+                <div>{project.year}</div>
               </div>
-              <div>{project.year}</div>
-            </div>
-            <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
-              <div className="text-xs font-light uppercase tracking-wider text-stone-400">
-                Localização
+            )}
+            {project.location && (
+              <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
+                <div className="text-xs font-light uppercase tracking-wider text-stone-400">
+                  Localização
+                </div>
+                <div>{project.location}</div>
               </div>
-              <div>{project.location}</div>
-            </div>
-            <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
-              <div className="text-xs font-light uppercase tracking-wider text-stone-400">
-                Área
+            )}
+            {project.area && (
+              <div className="flex flex-col gap-2 px-6 py-6 lg:px-12 lg:py-6">
+                <div className="text-xs font-light uppercase tracking-wider text-stone-400">
+                  Área
+                </div>
+                <div>{project.area}</div>
               </div>
-              <div>{project.area}</div>
-            </div>
+            )}
           </div>
         </div>
       </div>
 
       <div className="mt-20 px-4 md:px-8 xl:px-12">
-        <h2 className="font-light uppercase tracking-wider text-lime-600">
-          {project.projectCategories.edges[0].node.name}
-        </h2>
+        {project.projectCategories.edges.length > 0 && (
+          <h2 className="font-light uppercase tracking-wider text-lime-600">
+            {project.projectCategories.edges[0].node.name}
+          </h2>
+        )}
 
         <h1 className="text-5xl font-light uppercase tracking-wider">
           {project.title}
         </h1>
 
-        <ProjectDescription description={project.description} />
+        {project.description && (
+          <ProjectDescription description={project.description} />
+        )}
       </div>
 
       <div className="mt-20 px-4 md:px-8 xl:px-12">
-        <ProjectImageGrid imageUrls={projectImages} />
+        <ProjectImageGrid images={project.images} />
       </div>
     </>
   );

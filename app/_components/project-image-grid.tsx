@@ -4,10 +4,17 @@ import { useState } from "react";
 import { ProjectImageCarousel } from "./project-image-carousel";
 
 interface Props {
-  imageUrls: string[];
+  images: {
+    edges: {
+      node: {
+        id: string;
+        sourceUrl: string;
+      };
+    }[];
+  };
 }
 
-export function ProjectImageGrid({ imageUrls }: Props) {
+export function ProjectImageGrid({ images }: Props) {
   const [showCarousel, setShowCarousel] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -19,8 +26,8 @@ export function ProjectImageGrid({ imageUrls }: Props) {
   return (
     <>
       <div className="grid grid-cols-4 gap-2">
-        {imageUrls.map((imageUrl, index) => {
-          const totalImages = imageUrls.length;
+        {images.edges.map(({ node: image }, index) => {
+          const totalImages = images.edges.length;
           const imagesRemaining = totalImages % 3;
           let colSpan = "";
 
@@ -37,15 +44,15 @@ export function ProjectImageGrid({ imageUrls }: Props) {
           }
 
           return (
-            <div key={imageUrl} className={`${colSpan} grid h-full gap-2`}>
+            <div key={image.id} className={`${colSpan} grid h-full gap-2`}>
               <button
                 className="group relative overflow-hidden"
                 onClick={() => handleImageClick(index)}
               >
                 <img
                   className="relative h-full w-full object-cover"
-                  src={imageUrl}
-                  alt=""
+                  src={image.sourceUrl}
+                  alt="Imagem renderizada do projeto"
                 />
 
                 <div className="absolute inset-0 hidden h-full w-full bg-black/50 group-hover:block"></div>
@@ -57,7 +64,7 @@ export function ProjectImageGrid({ imageUrls }: Props) {
 
       {showCarousel && (
         <ProjectImageCarousel
-          imageUrls={imageUrls}
+          images={images}
           activeIndex={activeIndex}
           onClose={() => setShowCarousel(false)}
         ></ProjectImageCarousel>

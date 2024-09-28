@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { getCategories, getPosts } from "../../_lib/api";
-import { formatDate } from "../../_lib/utils";
 import Image from "next/image";
+import { getCategories, getPostsByCategory } from "../../../../_lib/api";
+import { formatDate } from "../../../../_lib/utils";
 
 export default async function Page({
+  params,
   searchParams,
 }: {
+  params: { slug: string };
   searchParams: {
     after?: string;
     before?: string;
@@ -14,7 +16,8 @@ export default async function Page({
   const column1 = [];
   const column2 = [];
 
-  const posts = await getPosts(
+  const posts = await getPostsByCategory(
+    params.slug,
     searchParams.before ? null : 10,
     searchParams.after || null,
     searchParams.before || null,

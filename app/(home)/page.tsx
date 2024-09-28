@@ -2,6 +2,7 @@ import { Carousel } from "flowbite-react";
 import Link from "next/link";
 import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Flowbite } from "flowbite-react";
+import { getHome } from "../_lib/api";
 
 const theme: CustomFlowbiteTheme = {
   carousel: {
@@ -12,12 +13,14 @@ const theme: CustomFlowbiteTheme = {
   },
 };
 
-export default function Page() {
+export default async function Page() {
+  const home = await getHome();
+
   return (
     <Flowbite theme={{ theme: theme }}>
       <div className="relative h-screen w-screen">
-        <nav className="absolute px-4 pt-48 md:hidden z-10">
-          <ul className="z-40 flex flex-col gap-12 text-lg tracking-wider text-white">
+        <nav className="absolute z-10 px-4 pt-48 md:hidden">
+          <ul className="z-40 flex flex-col gap-8 text-lg tracking-wider text-white">
             <li>
               <Link className="hover:text-lime-400" href="/projetos">
                 PROJETOS
@@ -37,27 +40,15 @@ export default function Page() {
         </nav>
 
         <Carousel slideInterval={5000}>
-          <div
-            className="h-screen w-screen bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://ciadearquitetura.com/assets/imagens/fundos/fundo-9.jpg')",
-            }}
-          ></div>
-          <div
-            className="h-screen w-screen bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://ciadearquitetura.com/assets/imagens/fundos/fundo-5.jpg')",
-            }}
-          ></div>
-          <div
-            className="h-screen w-screen bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://ciadearquitetura.com/assets/imagens/fundos/fundo-11.jpg')",
-            }}
-          ></div>
+          {home.images.edges.map(({ node: image }) => (
+            <div
+              key={image.id}
+              className="h-screen w-screen bg-cover bg-center"
+              style={{
+                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${image}')`,
+              }}
+            ></div>
+          ))}
         </Carousel>
       </div>
     </Flowbite>

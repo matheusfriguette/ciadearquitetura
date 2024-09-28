@@ -16,16 +16,19 @@ const theme: CustomFlowbiteTheme = {
 };
 
 interface Props {
-  imageUrls: string[];
+  images: {
+    edges: {
+      node: {
+        id: string;
+        sourceUrl: string;
+      };
+    }[];
+  };
   activeIndex: number;
   onClose: () => void;
 }
 
-export function ProjectImageCarousel({
-  imageUrls,
-  activeIndex,
-  onClose,
-}: Props) {
+export function ProjectImageCarousel({ images, activeIndex, onClose }: Props) {
   const carouselParentRef = useRef();
 
   const handleCloseClick = () => {
@@ -38,7 +41,7 @@ export function ProjectImageCarousel({
         <div ref={carouselParentRef} className="relative h-screen w-screen">
           <button
             onClick={handleCloseClick}
-            className="absolute right-4 top-4 z-50 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white sm:h-10 sm:w-10 dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70"
+            className="absolute right-4 top-4 z-50 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 sm:h-10 sm:w-10"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +49,7 @@ export function ProjectImageCarousel({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-5 text-white sm:size-6 dark:text-gray-800"
+              className="size-5 text-white dark:text-gray-800 sm:size-6"
             >
               <path
                 strokeLinecap="round"
@@ -56,8 +59,12 @@ export function ProjectImageCarousel({
             </svg>
           </button>
           <Carousel activeSlide={activeIndex} slide={false} indicators={false}>
-            {imageUrls.map((imageUrl) => (
-              <img className="w-full" src={imageUrl} alt="" />
+            {images.edges.map(({ node: image }) => (
+              <img
+                className="h-full w-full object-contain"
+                src={image.sourceUrl}
+                alt="Imagem renderizada do projeto"
+              />
             ))}
           </Carousel>
         </div>

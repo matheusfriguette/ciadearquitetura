@@ -49,3 +49,9 @@ export function mergeDeep<T extends object, S extends object>(
 
   return output;
 }
+
+export function formatDate(date: string): string {
+  return Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "long",
+  }).format(new Date(date));
+}

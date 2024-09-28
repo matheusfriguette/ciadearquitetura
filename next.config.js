@@ -1,5 +1,5 @@
 const { protocol, hostname, port, pathname } = new URL(
-  process.env.WORDPRESS_API_URL,
+  process.env.WORDPRESS_IMAGES_URL,
 );
 
 /** @type {import('next').NextConfig} */
@@ -13,5 +13,6 @@ module.exports = {
         pathname: `${pathname}/**`,
       },
     ],
+    unoptimized: true,
   },
 };
