@@ -1,8 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import { getContact } from "../_lib/api";
+import { useEffect, useState } from "react";
+import { Contact } from "../_lib/types";
 
-export async function Footer() {
-  const contact = await getContact();
+export function Footer() {
+  const [contact, setContact] = useState<Contact | undefined>();
+
+  const loadContact = async () => {
+    const response = await getContact();
+
+    setContact(response);
+  };
+
+  useEffect(() => {
+    loadContact();
+  }, []);
 
   const formatWhatsappNumber = (): string => {
     return "55" + contact.whatsapp.replace(/\D/g, "");
