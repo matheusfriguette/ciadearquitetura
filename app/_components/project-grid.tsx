@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Categories, Project, Projects } from "../_lib/types";
 import { ProjectCard } from "./project-card";
 import { getProjects } from "../_lib/api";
@@ -15,24 +15,24 @@ export function ProjectGrid({
   const [projects, setProjects] = useState<{ node: Project }[]>(
     initialProjects.edges,
   );
-  const [categorySlug, setCategorySlug] = useState(null);
+  const [categorySlug, setCategorySlug] = useState<string | null | undefined>(
+    undefined,
+  );
   const [after, setAfter] = useState<string | null>(
     initialProjects.pageInfo.endCursor,
   );
-  const [hasNextPage, setHasNextPage] = useState(
+  const [hasNextPage, setHasNextPage] = useState<boolean>(
     initialProjects.pageInfo.hasNextPage,
   );
   const [loading, setLoading] = useState(false);
 
-  const loadProjects = async (category?: string) => {
-    if (loading || !hasNextPage) return;
+  const loadProjects = async () => {
+    if (!hasNextPage || loading) return;
+
     setLoading(true);
 
-    console.log(after);
-    console.log(category);
-
     try {
-      const { edges, pageInfo } = await getProjects(4, after, category);
+      const { edges, pageInfo } = await getProjects(4, after, categorySlug);
       setProjects((prev) => [...prev, ...edges]);
       setAfter(pageInfo.endCursor);
       setHasNextPage(pageInfo.hasNextPage);
@@ -44,7 +44,7 @@ export function ProjectGrid({
   const handleScroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.offsetHeight - 50
+      document.documentElement.offsetHeight - 200
     ) {
       loadProjects();
     }
@@ -52,17 +52,22 @@ export function ProjectGrid({
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [after, hasNextPage, loading, categorySlug]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    if (categorySlug !== undefined) {
+      loadProjects();
+    }
+  }, [categorySlug]);
 
   const handleCategorySelect = (slug?: string) => {
-    if (slug !== categorySlug) {
-      setCategorySlug(slug);
-      setProjects([]);
-      setAfter(null);
-      setHasNextPage(true);
-      loadProjects(slug);
-    }
+    setProjects([]);
+    setAfter(null);
+    setHasNextPage(true);
+    setCategorySlug(slug);
   };
 
   return (
@@ -76,13 +81,13 @@ export function ProjectGrid({
           <li>
             <button
               onClick={() => handleCategorySelect(null)}
-              className={`uppercase ${categorySlug === null ? "text-lime-600" : "hover:text-lime-600"}`}
+              className={`uppercase ${!categorySlug ? "text-lime-600" : "hover:text-lime-600"}`}
             >
               Todos
             </button>
           </li>
           {categories.nodes.map((category) => (
-            <li>
+            <li key={category.id}>
               <button
                 onClick={() => handleCategorySelect(category.slug)}
                 className={`uppercase ${categorySlug === category.slug ? "text-lime-600" : "hover:text-lime-600"}`}

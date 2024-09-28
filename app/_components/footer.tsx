@@ -1,16 +1,23 @@
 import Link from "next/link";
+import { getContact } from "../_lib/api";
 
-export function Footer() {
+export async function Footer() {
+  const contact = await getContact();
+
+  const formatWhatsappNumber = (): string => {
+    return "55" + contact.whatsapp.replace(/\D/g, "");
+  };
+
   return (
     <div className="bottom-0 w-full bg-white/50 py-4 md:fixed">
       <div className="flex flex-col items-center justify-center gap-8 md:flex-row">
-        <div className="flex flex-col md:flex-row items-center gap-6">
+        <div className="flex flex-col items-center gap-6 md:flex-row">
           <div className="uppercase">Siga-nos</div>
 
           <div className="flex items-center gap-6">
             <Link
               className="block hover:text-stone-600"
-              href="https://www.instagram.com/ciadearquitetura/"
+              href={contact.instagram}
               target="_blank"
             >
               <svg
@@ -25,7 +32,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href="https://www.facebook.com/ciadearquitetura"
+              href={contact.facebook}
               target="_blank"
             >
               <svg
@@ -40,7 +47,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href="https://www.youtube.com/@ciadearquitetura"
+              href={contact.youtube}
               target="_blank"
             >
               <svg
@@ -55,7 +62,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href="https://br.pinterest.com/ciadearquitetur/_saved/"
+              href={contact.pinterest}
               target="_blank"
             >
               <svg
@@ -71,15 +78,30 @@ export function Footer() {
                 />
               </svg>
             </Link>
+
+            <Link
+              className="block hover:text-stone-600"
+              href={contact.tiktok}
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-8"
+              >
+                <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z" />
+              </svg>
+            </Link>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-6">
+        <div className="flex flex-col items-center gap-6 md:flex-row">
           <div className="uppercase">Fale conosco</div>
 
           <div className="flex items-center gap-6">
             <Link
               className="block hover:text-stone-600"
-              href="https://wa.me//5534999041965?text=Ol%C3%A1,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento."
+              href={`https://wa.me//${formatWhatsappNumber()}?text=Ol%C3%A1,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento.`}
               target="_blank"
             >
               <svg
@@ -94,7 +116,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href="mailto:projetos@ciadearquitetura.com"
+              href={`mailto:${contact.email}`}
               target="_blank"
             >
               <svg

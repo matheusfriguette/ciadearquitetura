@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ProjectImageCarousel } from "./project-image-carousel";
+import { motion, useInView } from "framer-motion";
 
 interface Props {
   images: {
@@ -27,6 +28,9 @@ export function ProjectImageGrid({ images }: Props) {
     <>
       <div className="grid grid-cols-4 gap-2">
         {images.edges.map(({ node: image }, index) => {
+          const ref = useRef(null);
+          const inView = useInView(ref, { once: true });
+          
           const totalImages = images.edges.length;
           const imagesRemaining = totalImages % 3;
           let colSpan = "";
@@ -45,7 +49,11 @@ export function ProjectImageGrid({ images }: Props) {
 
           return (
             <div key={image.id} className={`${colSpan} grid h-full gap-2`}>
-              <button
+              <motion.button
+                ref={ref}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5 }}
                 className="group relative overflow-hidden"
                 onClick={() => handleImageClick(index)}
               >
@@ -56,7 +64,7 @@ export function ProjectImageGrid({ images }: Props) {
                 />
 
                 <div className="absolute inset-0 hidden h-full w-full bg-black/50 group-hover:block"></div>
-              </button>
+              </motion.button>
             </div>
           );
         })}

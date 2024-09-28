@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import { useState } from "react";
+import { TransitionLink } from "./transition-link";
 
 export function PagesHeader() {
   const pathname = usePathname();
@@ -16,13 +16,13 @@ export function PagesHeader() {
   return (
     <header className="z-10 w-full bg-white">
       <div className="flex items-center justify-between px-4 py-4 md:px-8 xl:px-12">
-        <Link href="/">
+        <TransitionLink href="/">
           <img
             className="h-40 md:h-40"
             src="/logo-pages.png"
             alt="Logo do Cia de Arquitetura"
           />
-        </Link>
+        </TransitionLink>
 
         <button
           className={`md:hidden ${isMenuOpen ? "hidden" : "block"}`}
@@ -47,36 +47,36 @@ export function PagesHeader() {
         <nav className="hidden md:block">
           <ul className="flex gap-12 text-sm font-light tracking-wider text-stone-900">
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/projetos") ? "text-lime-600" : ""}`}
                 href="/projetos"
               >
                 PROJETOS
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/escritorio") ? "text-lime-600" : ""}`}
                 href="/escritorio"
               >
                 ESCRITÓRIO
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/contato") ? "text-lime-600" : ""}`}
                 href="/contato"
               >
                 CONTATO
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/blog") ? "text-lime-600" : ""}`}
                 href="/blog"
               >
                 BLOG
-              </Link>
+              </TransitionLink>
             </li>
           </ul>
         </nav>
@@ -107,40 +107,40 @@ export function PagesHeader() {
         <nav className="mt-48">
           <ul className="z-40 flex flex-col items-center gap-12 text-lg font-light tracking-wider text-white">
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/projetos") ? "text-lime-600" : ""}`}
                 href="/projetos"
                 onClick={toggleMenu}
               >
                 PROJETOS
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/escritorio") ? "text-lime-600" : ""}`}
                 href="/escritorio"
                 onClick={toggleMenu}
               >
                 ESCRITÓRIO
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/contato") ? "text-lime-600" : ""}`}
                 href="/contato"
                 onClick={toggleMenu}
               >
                 CONTATO
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link
+              <TransitionLink
                 className={`hover:text-lime-600 ${pathname.startsWith("/blog") ? "text-lime-600" : ""}`}
                 href="/blog"
                 onClick={toggleMenu}
               >
                 BLOG
-              </Link>
+              </TransitionLink>
             </li>
           </ul>
         </nav>

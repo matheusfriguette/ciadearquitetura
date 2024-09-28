@@ -1,8 +1,8 @@
 import { Carousel } from "flowbite-react";
-import Link from "next/link";
 import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Flowbite } from "flowbite-react";
 import { getHome } from "../_lib/api";
+import { TransitionLink } from "../_components/transition-link";
 
 const theme: CustomFlowbiteTheme = {
   carousel: {
@@ -22,19 +22,22 @@ export default async function Page() {
         <nav className="absolute z-10 px-4 pt-48 md:hidden">
           <ul className="z-40 flex flex-col gap-8 text-lg tracking-wider text-white">
             <li>
-              <Link className="hover:text-lime-400" href="/projetos">
+              <TransitionLink className="hover:text-lime-400" href="/projetos">
                 PROJETOS
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link className="hover:text-lime-400" href="/escritorio">
+              <TransitionLink
+                className="hover:text-lime-400"
+                href="/escritorio"
+              >
                 ESCRITÓRIO
-              </Link>
+              </TransitionLink>
             </li>
             <li>
-              <Link className="hover:text-lime-400" href="/contato">
+              <TransitionLink className="hover:text-lime-400" href="/contato">
                 CONTATO
-              </Link>
+              </TransitionLink>
             </li>
           </ul>
         </nav>
@@ -45,7 +48,7 @@ export default async function Page() {
               key={image.id}
               className="h-screen w-screen bg-cover bg-center"
               style={{
-                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${image}')`,
+                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${image.sourceUrl}')`,
               }}
             ></div>
           ))}

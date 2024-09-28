@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
 import { getCategories, getPostsByCategory } from "../../../../_lib/api";
 import { formatDate } from "../../../../_lib/utils";
+import { TransitionLink } from "../../../../_components/transition-link";
 
 export default async function Page({
   params,
@@ -44,7 +44,7 @@ export default async function Page({
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-4">
               {column1.map((post) => (
-                <Link
+                <TransitionLink
                   key={post.id}
                   href={`/blog/${post.slug}`}
                   className="group block break-inside-avoid border border-stone-100 p-6 hover:bg-stone-100"
@@ -86,12 +86,12 @@ export default async function Page({
                     className="mt-4 text-justify font-light leading-relaxed text-stone-600"
                     dangerouslySetInnerHTML={{ __html: post.excerpt }}
                   ></div>
-                </Link>
+                </TransitionLink>
               ))}
             </div>
             <div className="flex flex-col gap-4">
               {column2.map((post) => (
-                <Link
+                <TransitionLink
                   key={post.id}
                   href={`/blog/${post.slug}`}
                   className="group block break-inside-avoid border border-stone-100 p-6 hover:bg-stone-100"
@@ -133,28 +133,28 @@ export default async function Page({
                     className="mt-4 text-justify font-light leading-relaxed text-stone-600"
                     dangerouslySetInnerHTML={{ __html: post.excerpt }}
                   ></div>
-                </Link>
+                </TransitionLink>
               ))}
             </div>
           </div>
 
           <div className="mt-20 flex justify-end gap-4">
             {posts.pageInfo.hasPreviousPage && (
-              <Link
+              <TransitionLink
                 className="bg-stone-900 px-6 py-2 font-light uppercase tracking-wider text-white hover:bg-stone-600"
                 href={`/blog?before=${posts.pageInfo.startCursor}`}
               >
                 <button>Página anterior</button>
-              </Link>
+              </TransitionLink>
             )}
 
             {posts.pageInfo.hasNextPage && (
-              <Link
+              <TransitionLink
                 className="bg-stone-900 px-6 py-2 font-light uppercase tracking-wider text-white hover:bg-stone-600"
                 href={`/blog?after=${posts.pageInfo.endCursor}`}
               >
                 <button>Próxima página</button>
-              </Link>
+              </TransitionLink>
             )}
           </div>
         </div>
@@ -167,13 +167,13 @@ export default async function Page({
           <ul className="mt-8 flex flex-col gap-4">
             {categories.nodes.map((category) => (
               <li>
-                <Link
+                <TransitionLink
                   key={category.id}
                   href={`/blog/categoria/${category.slug}`}
-                  className="text-sm font-light uppercase tracking-wider text-stone-600 hover:text-lime-600"
+                  className={`text-sm font-light uppercase tracking-wider ${params.slug === category.slug ? "text-lime-600" : "text-stone-600 hover:text-lime-600"}`}
                 >
                   {category.name}
-                </Link>
+                </TransitionLink>
               </li>
             ))}
           </ul>
