@@ -33,6 +33,16 @@ export interface AboutUs {
   architectonicProject: string;
   interiorProject: string;
   landscapeProject: string;
+  architects: {
+    edges: { node: Architect }[];
+  };
+}
+
+export interface Architect {
+  id: string;
+  fullName: string;
+  description: string;
+  image: Image;
 }
 
 export interface Contact {

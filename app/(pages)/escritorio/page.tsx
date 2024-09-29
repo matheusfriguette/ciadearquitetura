@@ -108,36 +108,22 @@ export default async function Page() {
         </h2>
 
         <div className="mt-20 flex flex-col justify-around gap-4 md:flex-row">
-          <div className="w-full md:w-1/4">
-            <img
-              src="https://lp.ciadearquitetura.com/wp-content/uploads/2023/07/Frame-15-5.webp"
-              alt="Imagem de Erick Riul"
-            />
-            <div className="mt-8 text-center text-xl font-medium">
-              Erick Riul
+          {aboutUs.architects.edges.map(({ node: architect }) => (
+            <div className="w-full md:w-1/4">
+              <Image
+                src={architect.image.node.sourceUrl}
+                width={architect.image.node.mediaDetails.width}
+                height={architect.image.node.mediaDetails.height}
+                alt={`Imagem de ${architect.fullName}`}
+              />
+              <div className="mt-8 text-center text-xl font-medium">
+                {architect.fullName}
+              </div>
+              <div className="mt-4 text-justify font-light leading-relaxed text-stone-600">
+                {architect.description}
+              </div>
             </div>
-            <div className="mt-4 text-justify font-light leading-relaxed text-stone-600">
-              Arquiteto e Urbanista, formado em em 2013 pela Universidade
-              Federal de Uberlândia. Participou da 7ª Bienal Internacional de
-              Arquitetura de São Paulo em 2007 e teve um projeto contemplado com
-              o segundo lugar na VI Bienal José Miguel Aroztegui, no Concurso
-              Estudantil Íbero-Americano de Arquitetura Bioclimática em 2009.
-            </div>
-          </div>
-          <div className="w-full md:w-1/4">
-            <img
-              src="http://lp.ciadearquitetura.com/wp-content/uploads/2023/07/Frame-15-1.webp"
-              alt="Imagem de Alessandra Diamante"
-            />
-            <div className="mt-8 text-center text-xl font-medium">
-              Alessandra Diamante
-            </div>
-            <div className="mt-4 text-justify font-light leading-relaxed text-stone-600">
-              Arquiteta e Urbanista pelo Centro Universitário do Triângulo em
-              2003. Pós Graduada em Iluminação e Design de Interiores pela
-              Faculdade Castello Branco em 2007.
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>

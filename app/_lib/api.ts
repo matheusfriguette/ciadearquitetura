@@ -200,6 +200,24 @@ export async function getAboutUs(): Promise<AboutUs> {
         architectonicProject
         interiorProject
         landscapeProject
+        architects {
+          edges {
+            node {
+              id
+              fullName
+              description
+              image {
+                node {
+                  sourceUrl
+                  mediaDetails {
+                    height
+                    width
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
     `,
