@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <ul className="mt-8 flex flex-col gap-4">
             {categories.nodes.map((category) => (
-              <li>
+              <li key={category.id}>
                 <TransitionLink
                   key={category.id}
                   href={`/blog/categoria/${category.slug}`}

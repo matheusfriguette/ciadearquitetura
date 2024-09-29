@@ -86,7 +86,7 @@ export interface Post {
   content: string;
 }
 
-interface Image {
+export interface Image {
   node: {
     id: string;
     sourceUrl: string;

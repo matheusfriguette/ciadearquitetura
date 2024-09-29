@@ -166,9 +166,8 @@ export default async function Page({
 
           <ul className="mt-8 flex flex-col gap-4">
             {categories.nodes.map((category) => (
-              <li>
+              <li key={category.id}>
                 <TransitionLink
-                  key={category.id}
                   href={`/blog/categoria/${category.slug}`}
                   className={`text-sm font-light uppercase tracking-wider ${params.slug === category.slug ? "text-lime-600" : "text-stone-600 hover:text-lime-600"}`}
                 >

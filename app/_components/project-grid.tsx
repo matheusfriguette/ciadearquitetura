@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Categories, Project, Projects } from "../_lib/types";
 import { ProjectCard } from "./project-card";
 import { getProjects } from "../_lib/api";
@@ -105,7 +105,7 @@ export function ProjectGrid({
             key={project.id}
             title={project.title}
             location={project.location}
-            imageUrl={project.featuredImage?.node.sourceUrl}
+            featuredImage={project.featuredImage}
             slug={project.slug}
           />
         ))}

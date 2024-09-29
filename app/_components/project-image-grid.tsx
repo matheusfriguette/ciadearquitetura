@@ -3,15 +3,12 @@
 import { useRef, useState } from "react";
 import { ProjectImageCarousel } from "./project-image-carousel";
 import { motion, useInView } from "framer-motion";
+import { Image as ImageType } from "../_lib/types";
+import Image from "next/image";
 
 interface Props {
   images: {
-    edges: {
-      node: {
-        id: string;
-        sourceUrl: string;
-      };
-    }[];
+    edges: ImageType[];
   };
 }
 
@@ -30,7 +27,7 @@ export function ProjectImageGrid({ images }: Props) {
         {images.edges.map(({ node: image }, index) => {
           const ref = useRef(null);
           const inView = useInView(ref, { once: true });
-          
+
           const totalImages = images.edges.length;
           const imagesRemaining = totalImages % 3;
           let colSpan = "";
@@ -57,9 +54,11 @@ export function ProjectImageGrid({ images }: Props) {
                 className="group relative overflow-hidden"
                 onClick={() => handleImageClick(index)}
               >
-                <img
+                <Image
                   className="relative h-full w-full object-cover"
                   src={image.sourceUrl}
+                  width={image.mediaDetails.width}
+                  height={image.mediaDetails.height}
                   alt="Imagem renderizada do projeto"
                 />
 

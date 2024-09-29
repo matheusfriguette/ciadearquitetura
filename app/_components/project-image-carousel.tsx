@@ -5,6 +5,8 @@ import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Flowbite } from "flowbite-react";
 import { useRef } from "react";
 import { Carousel } from "./carousel";
+import Image from "next/image";
+import { Image as ImageType } from "../_lib/types";
 
 const theme: CustomFlowbiteTheme = {
   carousel: {
@@ -17,12 +19,7 @@ const theme: CustomFlowbiteTheme = {
 
 interface Props {
   images: {
-    edges: {
-      node: {
-        id: string;
-        sourceUrl: string;
-      };
-    }[];
+    edges: ImageType[];
   };
   activeIndex: number;
   onClose: () => void;
@@ -60,9 +57,12 @@ export function ProjectImageCarousel({ images, activeIndex, onClose }: Props) {
           </button>
           <Carousel activeSlide={activeIndex} slide={false} indicators={false}>
             {images.edges.map(({ node: image }) => (
-              <img
+              <Image
+                key={image.id}
                 className="h-full w-full object-contain"
                 src={image.sourceUrl}
+                width={image.mediaDetails.width}
+                height={image.mediaDetails.height}
                 alt="Imagem renderizada do projeto"
               />
             ))}

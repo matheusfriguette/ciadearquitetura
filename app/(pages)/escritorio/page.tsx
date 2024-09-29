@@ -109,7 +109,7 @@ export default async function Page() {
 
         <div className="mt-20 flex flex-col justify-around gap-4 md:flex-row">
           {aboutUs.architects.edges.map(({ node: architect }) => (
-            <div className="w-full md:w-1/4">
+            <div key={architect.id} className="w-full md:w-1/4">
               <Image
                 src={architect.image.node.sourceUrl}
                 width={architect.image.node.mediaDetails.width}

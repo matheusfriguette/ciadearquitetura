@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { TransitionLink } from "./transition-link";
+import Image from "next/image";
 
 export function HomeHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,9 +15,11 @@ export function HomeHeader() {
     <header className="fixed z-10 w-full bg-transparent">
       <div className="flex items-center justify-between px-4 py-4 md:px-8 xl:px-12">
         <TransitionLink href="/">
-          <img
-            className="h-40 md:h-40"
+          <Image
+            className="h-40"
             src="/logo-home.png"
+            width={160}
+            height={160}
             alt="Logo do Cia de Arquitetura"
           />
         </TransitionLink>

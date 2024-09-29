@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { TransitionLink } from "./transition-link";
+import Image from "next/image";
 
 export function PagesHeader() {
   const pathname = usePathname();
@@ -17,9 +18,11 @@ export function PagesHeader() {
     <header className="z-10 w-full bg-white">
       <div className="flex items-center justify-between px-4 py-4 md:px-8 xl:px-12">
         <TransitionLink href="/">
-          <img
-            className="h-40 md:h-40"
+          <Image
+            className="h-40"
             src="/logo-pages.png"
+            width={160}
+            height={160}
             alt="Logo do Cia de Arquitetura"
           />
         </TransitionLink>
