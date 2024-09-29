@@ -31,7 +31,7 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <Link
               className="block hover:text-stone-600"
-              href={contact?.instagram}
+              href={contact?.instagram ?? ""}
               target="_blank"
             >
               <svg
@@ -46,7 +46,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href={contact?.facebook}
+              href={contact?.facebook ?? ""}
               target="_blank"
             >
               <svg
@@ -61,7 +61,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href={contact?.youtube}
+              href={contact?.youtube ?? ""}
               target="_blank"
             >
               <svg
@@ -76,7 +76,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href={contact?.pinterest}
+              href={contact?.pinterest ?? ""}
               target="_blank"
             >
               <svg
@@ -95,7 +95,7 @@ export function Footer() {
 
             <Link
               className="block hover:text-stone-600"
-              href={contact?.tiktok}
+              href={contact?.tiktok ?? ""}
               target="_blank"
             >
               <svg
