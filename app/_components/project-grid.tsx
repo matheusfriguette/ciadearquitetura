@@ -32,7 +32,7 @@ export function ProjectGrid({
     setLoading(true);
 
     try {
-      const { edges, pageInfo } = await getProjects(4, after, categorySlug);
+      const { edges, pageInfo } = await getProjects(10, after, categorySlug);
       setProjects((prev) => [...prev, ...edges]);
       setAfter(pageInfo.endCursor);
       setHasNextPage(pageInfo.hasNextPage);
