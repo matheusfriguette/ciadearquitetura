@@ -3,6 +3,7 @@ import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Flowbite } from "flowbite-react";
 import { getHome } from "../_lib/api";
 import { TransitionLink } from "../_components/transition-link";
+import Image from "next/image";
 
 const theme: CustomFlowbiteTheme = {
   carousel: {
@@ -44,13 +45,17 @@ export default async function Page() {
 
         <Carousel slideInterval={5000}>
           {home.images.edges.map(({ node: image }) => (
-            <div
-              key={image.id}
-              className="h-screen w-screen bg-cover bg-center"
-              style={{
-                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${image.sourceUrl}')`,
-              }}
-            ></div>
+            <div key={image.id} className="relative h-screen w-screen">
+              <Image
+                width={image.mediaDetails.width}
+                height={image.mediaDetails.height}
+                className="h-full w-full object-cover object-center"
+                src={image.sourceUrl}
+                alt="Imagem de capa"
+              />
+
+              <div className="absolute inset-0 h-full w-full items-center justify-center bg-black/50"></div>
+            </div>
           ))}
         </Carousel>
       </div>
