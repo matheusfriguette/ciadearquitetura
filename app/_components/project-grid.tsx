@@ -77,7 +77,7 @@ export function ProjectGrid({
           Projetos
         </h1>
 
-        <ul className="mt-4 flex flex-wrap justify-end gap-4 text-sm tracking-wider sm:gap-8">
+        <ul className="mt-4 flex flex-wrap justify-end gap-4 text-xs tracking-wider sm:gap-8 sm:text-sm">
           <li>
             <button
               onClick={() => handleCategorySelect(null)}
@@ -99,7 +99,7 @@ export function ProjectGrid({
         </ul>
       </div>
 
-      <div className="mt-24 grid grid-cols-1 gap-4 md:grid-cols-2 md:px-8 xl:px-12">
+      <div className="mt-20 grid grid-cols-1 gap-4 md:grid-cols-2 md:px-8 xl:px-12">
         {projects.map(({ node: project }) => (
           <ProjectCard
             key={project.id}
