@@ -36,7 +36,7 @@ export default async function Page() {
         className="mt-20 w-full bg-cover bg-center md:bg-fixed"
         style={{
           backgroundImage:
-            "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://lp.ciadearquitetura.com/wp-content/uploads/2023/07/antes-de-contratar-3-1.webp')",
+            "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://admin.ciadearquitetura.com/wp-content/uploads/2024/10/casa_primavera_cia_de_arquitetura_casa_brasileira_concreto_aparente_uberlandia_casa_patio.jpg')",
         }}
       >
         <div className="px-4 py-40 md:px-8 xl:px-12">

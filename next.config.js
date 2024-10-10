@@ -15,9 +15,4 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
 };
