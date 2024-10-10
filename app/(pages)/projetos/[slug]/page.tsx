@@ -52,7 +52,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </h2>
         )}
 
-        <h1 className="text-5xl font-light uppercase tracking-wider">
+        <h1 className="text-4xl sm:text-5xl font-light uppercase tracking-wider">
           {project.title}
         </h1>
 
