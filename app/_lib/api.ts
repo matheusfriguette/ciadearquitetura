@@ -14,8 +14,6 @@ const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
   const headers = {
     "Content-Type": "application/json",
-    Authorization:
-      "Basic " + Buffer.from("basketball" + ":" + "brainy").toString("base64"),
   };
 
   const res = await fetch(API_URL, {
