@@ -24,7 +24,7 @@ export function ProjectCard({ title, location, featuredImage, slug }: Props) {
       className="overflow-hidden"
     >
       <TransitionLink
-        className="group relative w-full"
+        className="group relative block w-full"
         href={`/projetos/${slug}`}
       >
         {featuredImage && (

@@ -77,7 +77,7 @@ export function ProjectGrid({
           Projetos
         </h1>
 
-        <ul className="mt-4 flex justify-end gap-8 text-sm tracking-wider">
+        <ul className="mt-4 flex flex-wrap justify-end gap-8 text-sm tracking-wider">
           <li>
             <button
               onClick={() => handleCategorySelect(null)}
