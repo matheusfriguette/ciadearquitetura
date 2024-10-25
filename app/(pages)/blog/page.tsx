@@ -3,6 +3,8 @@ import { formatDate } from "../../_lib/utils";
 import Image from "next/image";
 import { TransitionLink } from "../../_components/transition-link";
 
+export const revalidate = 3600;
+
 export default async function Page({
   searchParams,
 }: {

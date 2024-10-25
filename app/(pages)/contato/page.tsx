@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getContact } from "../../_lib/api";
 import Image from "next/image";
 
+export const revalidate = 86400;
+
 export default async function Page() {
   const contact = await getContact();
 

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getCategories, getPost } from "../../../_lib/api";
 import { TransitionLink } from "../../../_components/transition-link";
 
+export const revalidate = 3600;
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getPost(params.slug);
   const categories = await getCategories();

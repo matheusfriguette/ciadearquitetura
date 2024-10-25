@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { getAboutUs } from "../../_lib/api";
 
+export const revalidate = 86400;
+
 export default async function Page() {
   const aboutUs = await getAboutUs();
 

@@ -18,6 +18,8 @@ const theme: CustomFlowbiteTheme = {
   },
 };
 
+export const revalidate = 86400;
+
 export default async function Page() {
   const home = await getHome();
 
