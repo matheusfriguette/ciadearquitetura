@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <div className="mt-20 flex flex-col gap-20 lg:flex-row">
         <div className="flex w-full justify-center lg:w-3/4">
-          <article className="prose prose-stone lg:prose-xl">
+          <article className="prose prose-stone lg:prose-xl w-full">
             <h2>{post.title}</h2>
             <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
           </article>
